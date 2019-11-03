@@ -4,8 +4,10 @@ pipeline{
 	stages{
 		stage('Build'){
 			steps{
-				sh 'mvn clean install'
-                archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
+				withMaven('Build') {
+            git "https://github.com/jpra843/sb-git-jenkins-pcf.git"
+            sh "export PATH=$MVN_CMD_DIR:$PATH && mvn clean install" // 'mvn' command: need to add the $MVN_CMD_DIR to $PATH
+        } 
 			}
 		}
 		stage('Deploy'){
