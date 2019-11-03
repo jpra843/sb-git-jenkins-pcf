@@ -1,15 +1,20 @@
 pipeline{
 
 	agent any
+	tools {
+        	maven 'apache-maven-3.6.0' 
+    	}
 	stages{
 		stage('Build'){
 			steps{
-				withMaven('Build') {
-            git "https://github.com/jpra843/sb-git-jenkins-pcf.git"
-            sh "export PATH=$MVN_CMD_DIR:$PATH && mvn clean install" // 'mvn' command: need to add the $MVN_CMD_DIR to $PATH
-        } 
-			}
+				bat "mvn clean install" 
+        		}  
 		}
+		stage('testing stage') {
+		     	steps {
+				bat "mvn test"
+			}
+    		}
 		stage('Deploy'){
 			steps{
 				withCredentials([[$class	:	'UsernamePasswordMultiBinding',
