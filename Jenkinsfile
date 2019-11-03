@@ -4,7 +4,7 @@ pipeline{
 	stages{
 		stage('Build'){
 			steps{   
-				withMaven(maven: 'C:/study/allStudy/apache-maven-3.6.0/bin'){
+				withMaven(maven: 'apache-maven-3.6.0'){
 					sh 'mvn clean package'
 				}
         		}  
