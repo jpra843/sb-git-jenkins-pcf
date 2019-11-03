@@ -3,10 +3,9 @@ pipeline{
 	agent any 
 	stages{
 		stage('Build'){
-			steps{  
-    				git url: 'https://github.com/jpra843/sb-git-jenkins-pcf' 
-				withMaven(maven: 'apache-maven-3.6.0'){
-					sh 'mvn clean install'
+			steps{   
+				maven(maven: 'apache-maven-3.6.0'){
+					sh 'mvn clean package'
 				}
         		}  
 		}
