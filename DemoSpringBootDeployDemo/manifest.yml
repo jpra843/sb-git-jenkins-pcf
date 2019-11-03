@@ -2,5 +2,5 @@
 applications:
 - name: DemoSpringBootDeployDemo
   instances:  1
-  memory: 850m
+  memory: 800m
   path: target/DemoSpringBootDeployDemo-0.0.1-SNAPSHOT.jar
